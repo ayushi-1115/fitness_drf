@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "workouts", #Custom app for managing workouts
     "accounts",  # Custom app for user accounts
     "nutrition",  # Custom app for nutrition tracking
+    "health", #Custom app for health tracking 
 ]
 
 # custom user model

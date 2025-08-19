@@ -26,4 +26,6 @@ urlpatterns = [
     path("api/v1/accounts/", include("accounts.urls")),  # Custom app for user accounts
     path("api/v1/workouts/", include("workouts.urls")),  # Custom app for managing workouts
     path("api/v1/nutrition/", include("nutrition.urls")),  # Custom app for nutrition
+    path("api/v1/health/", include("health.urls")),   # custom app for health
+ 
 ]
