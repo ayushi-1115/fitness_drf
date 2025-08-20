@@ -11,6 +11,7 @@ class HealthLogSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         # Auto-calc BMI if not provided
+        
         if not attrs.get("bmi") and attrs.get("weight_kg") and self.context["request"].user.height_cm:
             height_m = self.context["request"].user.height_cm / 100
             attrs["bmi"] = round(attrs["weight_kg"] / (height_m ** 2), 2)
