@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Home - Fitness App{% endblock %}
+{% block content %}
+<div class="jumbotron text-center bg-light p-5 rounded-3 shadow-sm mt-4">
+  <h1 class="display-4">Welcome to the Fitness App!</h1>
+  <p class="lead">Track your health, nutrition, and workouts all in one place.</p>
+  <hr class="my-4">
+  <div class="row justify-content-center">
+    <div class="col-md-3 mb-3">
+      <a href="/accounts/me/" class="btn btn-outline-primary btn-lg w-100">Profile</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/health/logs/" class="btn btn-outline-success btn-lg w-100">Health Logs</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/nutrition/plans/" class="btn btn-outline-warning btn-lg w-100">Diet Plans</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/workouts/plans/web/" class="btn btn-outline-info btn-lg w-100">Workouts</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

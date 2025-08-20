@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_filters",
+    "rest_framework",
+    "rest_framework_simplejwt",
     "workouts", #Custom app for managing workouts
     "accounts",  # Custom app for user accounts
     "nutrition",  # Custom app for nutrition tracking

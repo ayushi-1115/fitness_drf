@@ -18,14 +18,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from .views import home, bootstrap_example
 
 urlpatterns = [
+    path('', home, name='home'),
+    path('bootstrap/', bootstrap_example, name='bootstrap-example'),
     path("admin/", admin.site.urls),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
     path("api/v1/accounts/", include("accounts.urls")),  # Custom app for user accounts
+    path("accounts/", include("accounts.urls")),  # Direct route for accounts
     path("api/v1/workouts/", include("workouts.urls")),  # Custom app for managing workouts
+    path("workouts/", include("workouts.urls")),  # Direct route for workouts
     path("api/v1/nutrition/", include("nutrition.urls")),  # Custom app for nutrition
+    path("nutrition/", include("nutrition.urls")),  # Direct route for nutrition
     path("api/v1/health/", include("health.urls")),   # custom app for health
- 
+    path("health/", include("health.urls")),  # Direct route for health
 ]

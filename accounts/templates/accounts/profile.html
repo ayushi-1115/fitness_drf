@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="card mx-auto" style="max-width: 500px;">
+  <div class="card-header bg-primary text-white">Profile</div>
+  <div class="card-body">
+    <h5 class="card-title">{{ user.username }}</h5>
+    <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+    <p class="card-text"><strong>Role:</strong> {{ user.role }}</p>
+    <p class="card-text"><strong>Height (cm):</strong> {{ user.height_cm }}</p>
+    <p class="card-text"><strong>Weight (kg):</strong> {{ user.weight_kg }}</p>
+    <p class="card-text"><strong>Goal:</strong> {{ user.goal }}</p>
+  </div>
+</div>
+{% endblock %}

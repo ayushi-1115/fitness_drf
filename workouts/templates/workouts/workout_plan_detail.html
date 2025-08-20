@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Workout Plan Detail{% endblock %}
+{% block content %}
+<div class="card mb-4">
+  <div class="card-header bg-info text-white">{{ plan.title }}</div>
+  <div class="card-body">
+    <p><strong>Level:</strong> {{ plan.level }}</p>
+    <p><strong>Description:</strong> {{ plan.description }}</p>
+    <p><strong>Created By:</strong> {{ plan.created_by_username }}</p>
+    <p><strong>Exercises:</strong> {{ plan.exercises|length }}</p>
+    {% if user.role == 'trainer' %}
+    <a href="{% url 'plan-update' plan.id %}" class="btn btn-warning">Edit</a>
+    <form action="{% url 'plan-delete' plan.id %}" method="post" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a href="{% url 'exercise-create' plan.id %}" class="btn btn-success">Add Exercise</a>
+    {% endif %}
+  </div>
+</div>
+<h4>Exercises</h4>
+<ul class="list-group mb-4">
+  {% for exercise in plan.exercises %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <span>{{ exercise.name }} ({{ exercise.sets }} sets × {{ exercise.reps }} reps)</span>
+    {% if user.role == 'trainer' %}
+    <span>
+      <a href="{% url 'exercise-update' exercise.id %}" class="btn btn-sm btn-outline-warning">Edit</a>
+      <form action="{% url 'exercise-delete' exercise.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+      </form>
+    </span>
+    {% endif %}
+  </li>
+  {% empty %}
+  <li class="list-group-item">No exercises found.</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'plan-list' %}" class="btn btn-secondary">Back to Plans</a>
+{% endblock %}
