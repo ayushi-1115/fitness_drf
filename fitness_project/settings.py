@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_filters",
+    "rest_framework",
     "workouts", #Custom app for managing workouts
     "accounts",  # Custom app for user accounts
     "nutrition",  # Custom app for nutrition tracking
@@ -88,7 +89,7 @@ ROOT_URLCONF = "fitness_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["templates"],
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

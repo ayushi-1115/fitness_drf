@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Progress Logs{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Your Progress</h1>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Workout</th>
+            <th>Exercise</th>
+            <th>Sets Done</th>
+            <th>Reps Done</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in progress_logs %}
+        <tr>
+            <td>{{ log.date }}</td>
+            <td>{{ log.exercise.plan.title }}</td>
+            <td>{{ log.exercise.name }}</td>
+            <td>{{ log.sets_done }}</td>
+            <td>{{ log.reps_done }}</td>
+            <td>{{ log.notes }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">No progress logged yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

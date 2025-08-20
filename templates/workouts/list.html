@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Workout Plans{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Workout Plans</h1>
+<div class="row">
+    {% for workout in workouts %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ workout.title }}</h5>
+                <p class="card-text">{{ workout.description|truncatechars:100 }}</p>
+                <p class="text-muted">Level: {{ workout.get_level_display }}</p>
+                <a href="{% url 'workout-detail' workout.id %}" class="btn btn-primary">View Exercises</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <p>No workouts available yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

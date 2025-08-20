@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}{{ workout.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ workout.title }}</h1>
+<p>{{ workout.description }}</p>
+<p>Level: {{ workout.get_level_display }}</p>
+
+<h3 class="mt-4">Exercises</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>Rest (sec)</th>
+            <th>Video</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for exercise in workout.exercises.all %}
+        <tr>
+            <td>{{ exercise.name }}</td>
+            <td>{{ exercise.sets }}</td>
+            <td>{{ exercise.reps }}</td>
+            <td>{{ exercise.rest_seconds }}</td>
+            <td>
+                {% if exercise.video_url %}
+                    <a href="{{ exercise.video_url }}" target="_blank">Watch</a>
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No exercises added yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

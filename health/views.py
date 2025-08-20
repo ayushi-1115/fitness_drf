@@ -1,3 +1,15 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+# API landing view for health
+class HealthApiLanding(APIView):
+    def get(self, request):
+        return Response({
+            "message": "Welcome to the Health API!",
+            "endpoints": [
+                "/logs/"
+            ]
+        })
 from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import HealthLog

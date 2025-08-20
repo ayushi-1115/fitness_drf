@@ -1,3 +1,16 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+# API landing view for nutrition
+class NutritionApiLanding(APIView):
+    def get(self, request):
+        return Response({
+            "message": "Welcome to the Nutrition API!",
+            "endpoints": [
+                "/plans/",
+                "/meals/"
+            ]
+        })
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import DietPlan, Meal
@@ -39,3 +52,34 @@ class MealDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
     permission_classes = [IsTrainerOrNutritionistOrReadOnly]
+
+
+
+
+"""
+from rest_framework import viewsets, filters
+from django_filters.rest_framework import DjangoFilterBackend
+from .models import DietPlan, Meal
+from .serializers import DietPlanSerializer, MealSerializer
+from .permissions import IsTrainerOrNutritionistOrReadOnly
+
+class DietPlanViewSet(viewsets.ModelViewSet):
+    queryset = DietPlan.objects.all()
+    serializer_class = DietPlanSerializer
+    permission_classes = [IsTrainerOrNutritionistOrReadOnly]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = ["goal_type", "is_public"]
+    search_fields = ["title", "description"]
+    ordering_fields = ["created_at", "title"]
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+class MealViewSet(viewsets.ModelViewSet):
+    queryset = Meal.objects.all()
+    serializer_class = MealSerializer
+    permission_classes = [IsTrainerOrNutritionistOrReadOnly]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["diet_plan"]
+
+"""
